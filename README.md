@@ -3,8 +3,8 @@
 Contém todas as atividades desenvolvidas por __[Márcio Daniel](https://www.linkedin.com/in/marciodanielll/)
 
 
-##### B: [Revisão Shell e Comandos]
-- [x] 1.1 - Shell
+##### Sessão 01: [Revisão Shell e Comandos]
+- [X] 1.1 - Shell
 - [...] 1.3 - Principais comandos
 - [ ] 1.3 - Execução Sequencial de Comandos Shell
 - [ ] 1.4 - Redirecionamento de Entra e Saída
