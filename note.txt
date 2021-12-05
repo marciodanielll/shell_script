@@ -1,0 +1,109 @@
+"gerais"
+echo $0 = vai te dizer qual shell você está usando 
+echo &SHELL = mostra a variável de ambiete do shell que é usado
+
+"verica se estás instalado"
+sudo dpkg -l | grep "nome" = para ver se algo já está instalado
+
+"whatis"
+whatis cat = vai dizer o que o comando cat faz
+
+
+"ls"
+ls -ltr = ordena o conteudo do diretório corrente do mais antigo para o mais novo
+ls -1 = mostra os arquivo 1 por linha, parecido o -l
+
+"ps"
+ps axu = mais utlizado para listar processos
+ps axu | more = mostra mais detalhes do processo
+
+"touch"
+cria um arquivo, ou atualiza o horário de criação de um já existente
+touch aquivo1.txt
+
+"echo"
+echo -n = ele não quebra a linha para o próximo comando
+echo -e = você pode usar essa opções em tabulação, por exemplo:
+echo -e "curso\n shell\t script" = n quebra a linha, t dá um tab
+
+"mkdir"
+mkdir -p dir1/dir2/ = consegue criar diretórios já colocando outro diretório dentro
+rm -r = apaga o diretório, o r é recursivo, remove toda árvore
+rmdir = apaga apenas diretórios vázios, muito pouco usado
+rm -f = ele não da mensagem de "error", por exemplo, tentar apagar algo que não existe dá msg de erro, com o -f não dá.
+
+"sleep"
+sleep 10 = vai contar 10 segundo para pular para próxima linha do script
+
+
+"Manipulando Arquivos"
+"cat"
+cat -b arquivo.txt = enumera as linhas que não estão em branco
+cat -n arquivo.txt = enumera todas as linhas, mesmo as em branco
+cat -A arquivo.txt = ele mostra todos caracteres especial, como espaço e etc.
+
+"tac"
+tac arquivo.txt = é parecido com cat, mas le de baixo pra cima
+
+"tail"
+mostra as últimas linha de um arquivo
+tail arquivo.txt = mostra as últimas linhas do arquivo
+tail -n5 arquivo.txt = mostra as 5 últimas
+tail -5 arquivo.txt = igual a de cima
+
+"head"
+mostra as primeiras 10 linhas por padrão
+head -n1 arquivo.txt = mostra apenas a primeira
+head -c10 arquivo.txt = vai mostrar os 10 primeiros caracteres
+
+"wc" 
+conta os caracteres, linhas e bits de arquivo
+wc arquivo.txt = 10 linhas,  10 palavras e 70 caracteres
+wc -l arquivo.txt = vai mostrar apenas o número de linhas
+wc -w arquivo.txt = vai mostrar números de palavras
+wc -m arquivo.txt = números de caracteres
+wc -c arquivo.txt = de bits, que geralemnte é igual ao -m
+wc -l alunos* = vai mostrar a quantidade de linhas de todos arquivos que começam com alunos
+
+"sort"
+oderna um arquivo
+sort arquivo.txt = vaio ordenar alfabeticamente
+sort -r arquivo.txt = ordena ao contrário, reverse
+sort -k2 arquivo.txt = vai ordenar pelo segundo campo da linha
+tail arquivo.txt | sort -k3 -t":" = aqui não será o espaço o delimitador do campo, será os :
+tail arquivo.txt | sort -k3 -t":" -g = aqui ele ordena por número, resolve o mesmo do problema do javascript
+
+"uniq"
+uniq arquivo.txt = retorna as linhas repetidas na sequência, se não tiver, ele não tira
+sort arquivo.txt | uni = agora vai mostrar apenas uma única vez
+sort arquivo.txt | uniq -u= mostra o que apareceu apenas uma vez
+sort arquivo.txt | uniq -d = apenas os arquivos que se repetem
+sort arquivo.txt | uniq -c = conta a quantidade que a linha apareceu
+sort arquivo.txt | uniq -c | sort = vai ordenar do menor para maior por repetição, se quiser o contrário -r
+sort arquivo.txt | uniq -c | sort -r | header -n1 = vai mostra a linha que mais apareceu
+
+"tr"
+cat arquivo.txt | tr a e = vai trocar toda letra a pela letra e
+cat arquivo.txt | tra a-z A-Z = vai colocar tudo em maisculo
+cat arquivo.txt | tra aei AEI= vai trocar apenas aei por AEI
+cat arquivo.txt | tr ' ' '\t' = vai trocar todo espaço por um tab
+cat arquivo.txt | alunos2.txt | tr-d aei = vai deletar todas letras aei
+echo "Estudando Shell Script" | tr -s 'l' = onde encontra mais de um l juntos, vai deixar apenas um
+echo "Estudando Shell Script" | tr [:lower:] [:upper:] = transforma tudo que é minucuslo em maisculo
+
+"cut"
+cat arquivo.txt | cut -c 1-5 = ele vai mostrar em cada linha apenas os caracateres de 1 a 5
+cat arquivo.txt | cut -c 1,2,3 = pega os caracateres 1, 2 e 3
+cat arquivo.txt | cut -c5 = pega do cinco pra frente
+cat arquivo.txt | cut -f1 = vai mostrar apenas o primeiro campo
+cat arquivo.txt | cut -d "" -f1 = definindo o campo pelo espaço
+cat arquivo.txt | cut -d "" -f1,f3 = vai pegar os campos 1 e 3
+cat arquivo.txt | cut -d "" -f-2 = vai pega até o campo 2
+
+"diff"
+diff arquivo.txt arquivo2 = vai mostrar a diferença linha a linha
+diff arquivo.txt arquivo2 | cat -A = vai mostrar a diferença de caracteres especia como espaço por exemplo
+diff -w arquivo.txt arquivo2 = ignora as diferença de espaço em branco
+
+Usando diff para comprar diretórios
+diff -r dir1 dir2 = vai mostrar a diferença
